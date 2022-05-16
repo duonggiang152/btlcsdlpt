@@ -1,0 +1,11 @@
+-- xoa hoc sinh
+
+BEGIN TRANSACTION;
+GO
+DELETE FROM SinhVien WHERE SinhVien.MaSV = 2;
+GO
+UPDATE Lop
+SET Lop.CL =Lop.CL + 1
+WHERE LOP.MaL IN (SELECT Lop.MaL FROM Lop, ThanhVien WHERE Lop.MaL = ThanhVien.MaL AND ThanhVien.MaSV = 2 )
+GO 
+COMMIT TRANSACTION
